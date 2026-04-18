@@ -189,51 +189,63 @@ function renderFilters() {
     )
     .join('')
 }
-
 function renderProductCards() {
   return products
     .filter((product) => state.filter === 'All' || product.category === state.filter)
     .map(
       (product) => `
         <article class="product-card">
+          
+          <!-- PRODUCT VISUAL -->
           <div class="product-card__art" aria-hidden="true">
             <span class="product-card__badge">${product.tag}</span>
             <div class="product-card__orb"></div>
             <div class="product-card__shoe"></div>
           </div>
+
+          <!-- PRODUCT INFO -->
           <div class="product-card__body">
+            
             <div class="product-card__meta">
               <p class="eyebrow">${product.accent}</p>
               <p class="price">${currency.format(product.price)}</p>
             </div>
+
             <h3>${product.name}</h3>
             <p>${product.description}</p>
+
+            <!-- 🔥 IMPROVED SOCIAL PROOF + URGENCY -->
             <div class="product-card__stats">
               <span>${product.category}</span>
-              <span>${product.rating}/5 rating</span>
-              <span>${product.reviews} reviews</span>
+              <span>⭐ ${product.rating} (${product.reviews} reviews)</span>
+              <span class="low-stock">🔥 Only a few left</span>
             </div>
+
+            <!-- SIZES -->
             <div class="size-row" aria-label="Available sizes">
               ${product.sizes
                 .slice(0, 4)
                 .map((size) => `<span class="size-pill">${size}</span>`)
                 .join('')}
             </div>
+
+            <!-- ACTIONS -->
             <div class="product-card__actions">
               <button class="shop-button" type="button" data-add-cart="${product.id}">
-                Add to cart
+                Add to Cart • ${currency.format(product.price)}
               </button>
+
               <button class="ghost-button" type="button" data-quick-view="${product.id}">
-                Quick view
+                Quick View
               </button>
             </div>
+
           </div>
         </article>
       `,
     )
     .join('')
 }
-
 function renderCollections() {
   return collections
     .map(
@@ -414,32 +426,54 @@ function renderApp() {
       </header>
 
       <section class="hero-section" id="featured">
-        <div class="hero-copy">
-          <p class="eyebrow">NovaWear Spring / Summer</p>
-          <h1>Movement-first essentials that feel premium enough to sell.</h1>
-          <p class="hero-text">
-            A conversion-minded storefront concept for a modern footwear brand, blending clean
-            merchandising, trust-building content, and a lightweight checkout preview.
-          </p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="#best-sellers">Shop best sellers</a>
-            <a class="button button--ghost" href="#experience">Why shoppers convert</a>
-          </div>
-          <div class="hero-metrics" aria-label="Brand highlights">
-            <article>
-              <strong>4.9/5</strong>
-              <span>Average rating across top pairs</span>
-            </article>
-            <article>
-              <strong>48 hrs</strong>
-              <span>Dispatch time on in-stock items</span>
-            </article>
-            <article>
-              <strong>12k+</strong>
-              <span>Customers styling NovaWear weekly</span>
-            </article>
-          </div>
-        </div>
+  <div class="hero-copy">
+    <p class="eyebrow">🔥 Limited Summer Drop</p>
+
+    <!-- 🔥 NEW HIGH-CONVERTING HEADLINE -->
+    <h1>Upgrade Your Style Without Overpaying for Luxury Brands.</h1>
+
+    <!-- 🔥 STRONGER SUBTEXT -->
+    <p class="hero-text">
+      Premium footwear built for comfort, confidence, and everyday wear — trusted by thousands of customers worldwide.
+    </p>
+
+    <!-- 🔥 CTA BUTTONS -->
+    <div class="hero-actions">
+      <a class="button button--primary" href="#best-sellers">Shop Best Sellers</a>
+      <a class="button button--ghost" href="#reviews">See Reviews</a>
+    </div>
+
+    <!-- 🔥 URGENCY TRIGGER -->
+    <p class="sale-banner">
+      🔥 50% OFF selected styles today — limited stock available
+    </p>
+
+    <!-- 🔥 TRUST METRICS (REWRITTEN) -->
+    <div class="hero-metrics" aria-label="Brand highlights">
+      <article>
+        <strong>⭐ 4.9/5</strong>
+        <span>Rated by 12,000+ customers</span>
+      </article>
+      <article>
+        <strong>🚚 48 hrs</strong>
+        <span>Fast worldwide shipping</span>
+      </article>
+      <article>
+        <strong>🔒 Secure</strong>
+        <span>Safe & encrypted checkout</span>
+      </article>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <img src="${heroImg}" alt="" class="hero-image" width="480" height="480" />
+
+    <!-- 🔥 BETTER MICRO COPY -->
+    <div class="hero-note hero-note--top">Free shipping over $120</div>
+    <div class="hero-note hero-note--bottom">Only a few pieces left</div>
+  </div>
+</section>
 
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-glow"></div>

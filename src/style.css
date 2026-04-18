@@ -1212,3 +1212,13 @@ h1 {
     order: -1;
   }
 }
+
+.low-stock {
+  color: #e63946;
+  font-weight: 600;
+}
+.sale-banner {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #e63946;
+}
